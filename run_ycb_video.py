@@ -14,6 +14,7 @@ from estimater import *
 code_dir = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(f'{code_dir}/mycpp/build')
 import yaml
+from pdb import set_trace
 
 
 def get_mask(reader, i_frame, ob_id, detect_type):
@@ -82,6 +83,8 @@ def run_pose_estimation_worker(reader, i_frames, est:FoundationPose, debug=False
 def run_pose_estimation():
   wp.force_load(device='cuda')
   video_dirs = sorted(glob.glob(f'{opt.ycbv_dir}/test/*'))
+  # print(video_dirs)
+  # set_trace()
   res = NestDict()
 
   debug = opt.debug
@@ -147,3 +150,5 @@ if __name__=='__main__':
   detect_type = 'mask'   # mask / box / detected
 
   run_pose_estimation()
+
+# python run_ycb_video.py --ycbv_dir /home/pjlab/code/damn_ws/repos/FoundationPose/demo_data/ycbv/ycbv_test_bop19 --use_reconstructed_mesh 0

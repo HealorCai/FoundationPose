@@ -6,13 +6,17 @@
 # distribution of this software and related documentation without an express
 # license agreement from NVIDIA CORPORATION is strictly prohibited.
 
-
+from pdb import set_trace
+import matplotlib.pyplot as plt 
 from estimater import *
 from datareader import *
 import argparse
-
+from PIL import Image as PILImage 
+import time
+from pdb import set_trace 
 
 if __name__=='__main__':
+
   parser = argparse.ArgumentParser()
   code_dir = os.path.dirname(os.path.realpath(__file__))
   parser.add_argument('--mesh_file', type=str, default=f'{code_dir}/demo_data/mustard0/mesh/textured_simple.obj')
@@ -69,8 +73,22 @@ if __name__=='__main__':
       center_pose = pose@np.linalg.inv(to_origin)
       vis = draw_posed_3d_box(reader.K, img=color, ob_in_cam=center_pose, bbox=bbox)
       vis = draw_xyz_axis(color, ob_in_cam=center_pose, scale=0.1, K=reader.K, thickness=3, transparency=0, is_input_rgb=True)
-      cv2.imshow('1', vis[...,::-1])
-      cv2.waitKey(1)
+      # set_trace()
+      # cv2.namedWindow("Flag Operating System")
+      # cv2.imshow('1', vis[...,::-1])
+      # cv2.imwrite('1.png', vis[...,::-1])
+      # set_trace()
+      #import cv2
+      #cv2.imshow('Foundation Pose demo', color)
+      #cv2.waitKey(1)
+      plt.imshow(vis.copy())
+      # image = PILImage.fromarray(color, 'RGB')
+      #image.show()
+      # image.show()
+      plt.pause(0.1)
+      # plt.close()
+      # plt.close()
+      # plt.close()
 
 
     if debug>=2:
